@@ -1,0 +1,10 @@
+@use 'variables' as *;
+
+// Global Reset / Base
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bg-black;
+  font-family: $font-stack;
+}
+

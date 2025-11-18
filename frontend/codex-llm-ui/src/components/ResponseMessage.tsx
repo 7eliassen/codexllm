@@ -1,0 +1,43 @@
+import { useState } from "react";
+import type { ResponseMessageProps } from "../types/props";
+
+function ResponseMessage(props: ResponseMessageProps) {
+    const [isThoughtOpen, setIsThoughtOpen] = useState(false);
+
+    return (
+    <div className="ai-message-wrapper">
+          
+        {/* Thinking Block*/}
+        {props.thinkingText?
+            <div className="thought-block">
+            <div 
+                className="thought-header" 
+                onClick={() => setIsThoughtOpen(!isThoughtOpen)}>
+
+                <img src="brain.svg" alt="attach file" />
+
+                <span>{`Thought for ${props.thinkingTime} seconds`}</span>
+                
+                <img className={`icon-chevron ${isThoughtOpen ? 'expanded' : ''}`} src="chevron.svg" alt="chevron icon" />
+            </div>
+
+            {/* When we click 'expand' */}
+            {isThoughtOpen && ( 
+                <div className="thought-content">
+                    {props.thinkingText}
+                </div>
+            )}
+
+            </div>
+        : null}
+
+          {/* Main Content */}
+        <div className="response-content">
+            {props.responseText}
+        </div>
+    </div>
+    )
+    
+}
+
+export default ResponseMessage

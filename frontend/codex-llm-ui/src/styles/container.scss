@@ -1,0 +1,291 @@
+@use 'variables' as *;
+
+// TODO: need to expand input box when textarea is overflowing
+
+.chat-container {
+  background-color: $bg-black;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $text-white;
+  padding: 20px;
+  padding-bottom: 140px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.chat-column {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.user-message-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.user-message {
+  background: $bg-surface-light;
+  padding: 12px 16px;
+  border-radius: 15px;
+  max-width: 80%;
+  font-size: 14px;
+  line-height: 22px;
+  color: $text-white;
+}
+
+.ai-message-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.thought-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .thought-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    color: $text-gray;
+
+    .icon-sparkle {
+      width: 14px;
+      height: 14px;
+    }
+
+    .icon-chevron {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s;
+
+      &.expanded {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .thought-content {
+    padding-left: 24px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: $text-gray;
+    border-left: 1px solid $border-color;
+    margin-left: 7px;
+  }
+}
+
+.response-content {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  font-size: 14px;
+  line-height: 22px;
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  b {
+    font-weight: 700;
+  }
+  
+  .underline {
+      text-decoration: underline;
+      margin: 0 4px;
+  }
+}
+
+.code-block {
+  border: 1px solid $border-color;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 4px;
+
+  .code-header {
+    background: $bg-black;
+    border-bottom: 1px solid $border-color;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: $text-gray;
+
+    .lang {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: $text-gray;
+      font-family: $font-stack;
+
+      &:hover {
+        color: $text-white;
+      }
+    }
+  }
+
+  .code-body {
+    background: $bg-surface;
+    padding: 16px;
+    margin: 0;
+    font-family: $font-mono;
+    font-size: 12px;
+    line-height: 1.5;
+    color: $text-white;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    
+    .keyword { color: #FF7B72; }
+    .func { color: #D2A8FF; }
+    .arg { color: #79C0FF; }
+    .str { color: #A5D6FF; }
+    .comment { color: #8B949E; }
+    .error-text { color: $text-code-red; }
+  }
+}
+
+.custom-table {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $border-color;
+
+  .table-row {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid $border-color;
+    gap: 40px;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .col-left {
+      flex: 0 0 180px;
+      font-weight: 700;
+    }
+
+    .col-right {
+      flex: 1;
+      color: $text-white;
+    }
+    
+    .mono {
+        font-family: $font-mono;
+    }
+  }
+}
+
+.input-wrapper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px 20px 20px;
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 25%);
+  
+  z-index: 10;
+}
+
+.input-box {
+  width: 100%;
+  max-width: 600px;
+  background: $bg-surface;
+  border: 1px solid $border-color;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 10px;
+
+  textarea {
+    background: transparent;
+    border: none;
+    color: $text-white;
+    font-family: $font-stack;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+    min-height: 22px;
+
+    &::placeholder {
+      color: $text-gray;
+    }
+  }
+
+  .input-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 12px;
+      border-radius: 16px;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: $font-stack;
+    }
+
+    .attach-btn {
+      border: 1px solid $border-color;
+      background: transparent;
+      color: $text-gray;
+      svg {
+        stroke: $text-gray;
+      }
+    }
+
+    .send-btn {
+      background: $text-white;
+      border: none;
+      color: $bg-black;
+      font-weight: 500;
+      height: 30px;
+    }
+  }
+}
