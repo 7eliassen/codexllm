@@ -1,5 +1,5 @@
-import type {RequestMessageProps} from "../types/props"
-function RequestMessage(props: RequestMessageProps) {
+import type {RequestMessage } from "../types/types"
+function RequestMessageComponent(props: RequestMessage) {
     return (
         <div className="user-message-wrapper">
           <div className="user-message">
@@ -10,4 +10,4 @@ function RequestMessage(props: RequestMessageProps) {
     )
 }
 
-export default RequestMessage
+export default RequestMessageComponent

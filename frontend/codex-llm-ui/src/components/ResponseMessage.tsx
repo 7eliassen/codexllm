@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { ResponseMessageProps } from "../types/props";
+import type {ResponseMessage} from "../types/types";
 
-function ResponseMessage(props: ResponseMessageProps) {
+function ResponseMessageComponent(props: ResponseMessage ) {
     const [isThoughtOpen, setIsThoughtOpen] = useState(false);
 
     return (
@@ -40,4 +40,4 @@ function ResponseMessage(props: ResponseMessageProps) {
     
 }
 
-export default ResponseMessage
+export default ResponseMessageComponent
