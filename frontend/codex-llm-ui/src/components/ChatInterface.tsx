@@ -19,7 +19,7 @@ function ChatInterface() {
         id: prev.length + 1,
         request: message,
         response: {
-          responseText: "...",
+          responseText: "",
         }
       }
 

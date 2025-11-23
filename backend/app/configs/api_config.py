@@ -16,3 +16,9 @@ headers = {
     "Content-Type" : "application/json",
     "Accept": "application/x-ndjson"
 }
+
+pre_prompt = """
+All output in markdown, 
+Don't wrap all text in code block ('''markdown ... ''')
+Don't use unicode emojies 
+"""

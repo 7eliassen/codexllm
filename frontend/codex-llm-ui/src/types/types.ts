@@ -13,3 +13,7 @@ export interface RequestResponse {
     request: RequestMessage
     response: ResponseMessage
 }
+
+export interface MarkdownProps {
+    markdownText: string
+}

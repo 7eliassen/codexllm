@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type {ResponseMessage} from "../types/types";
+import MarkdownComponent from "./MarkdownComponent"
 
 function ResponseMessageComponent(props: ResponseMessage ) {
     const [isThoughtOpen, setIsThoughtOpen] = useState(false);
@@ -37,8 +38,10 @@ function ResponseMessageComponent(props: ResponseMessage ) {
 
           {/* Main Content */}
         <div className="response-content">
-            {props.responseText}
+            <MarkdownComponent markdownText={props.responseText}/>
         </div>
+    
+
     </div>
     )
     
