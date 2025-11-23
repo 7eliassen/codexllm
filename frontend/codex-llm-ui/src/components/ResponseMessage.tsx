@@ -16,8 +16,12 @@ function ResponseMessageComponent(props: ResponseMessage ) {
 
                 <img src="brain.svg" alt="attach file" />
 
+                {/* I don't sure if it good verification*/}
+                {props.thinkingTime !== undefined ? 
                 <span>{`Thought for ${props.thinkingTime} seconds`}</span>
+                : <span>{"Thinking"}</span>}
                 
+
                 <img className={`icon-chevron ${isThoughtOpen ? 'expanded' : ''}`} src="chevron.svg" alt="chevron icon" />
             </div>
 
