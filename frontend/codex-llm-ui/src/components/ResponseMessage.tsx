@@ -9,18 +9,19 @@ function ResponseMessageComponent(props: ResponseMessage ) {
     <div className="ai-message-wrapper">
           
         {/* Thinking Block*/}
-        {props.thinkingText?
-            <div className="thought-block">
+        {props.thinkingText || 1===1?
+            <div className={"thought-block"}>
             <div 
-                className="thought-header" 
+            
+                className={`thought-header ${props.thinkingTime !== undefined? "no-animation": ""}`} 
                 onClick={() => setIsThoughtOpen(!isThoughtOpen)}>
 
                 <img src="brain.svg" alt="attach file" />
 
                 {/* I don't sure if it good verification*/}
-                {props.thinkingTime !== undefined ? 
+                {props.thinkingTime !== undefined? 
                 <span>{`Thought for ${props.thinkingTime} seconds`}</span>
-                : <span>{"Thinking"}</span>}
+                : <span>{"Thinking..."}</span>}
                 
 
                 <img className={`icon-chevron ${isThoughtOpen ? 'expanded' : ''}`} src="chevron.svg" alt="chevron icon" />
