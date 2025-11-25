@@ -1,28 +1,28 @@
-import ReactMarkdown from "react-markdown";
+import Markdown from 'react-markdown'
 import type { MarkdownProps } from "../types/types";
-
+import remarkGfm from 'remark-gfm'
 
 function MarkdownComponent({markdownText}: MarkdownProps) {
-    console.log(markdownText)
-    function cleanServerMarkdown(text: string) {
-    let clean = text.trim()
+  function cleanServerMarkdown(text: string) {
+  let clean = text.trim()
 
-    // LLM can wrap text in code block
-    if (clean.startsWith("```markdown") && clean.endsWith("```")) {
-        clean = clean
-        .split("\n")
-        .slice(1, -1)
-        .join("\n")
-    }
+  // LLM can wrap text in code block
+  if (clean.startsWith("```markdown") && clean.endsWith("```")) {
+      clean = clean
+      .split("\n")
+      .slice(1, -1)
+      .join("\n")
+  }
 
-    return clean
-    }
+  return clean
+  }
 
-    const cleanText = cleanServerMarkdown(markdownText)
+  const markDownClean = cleanServerMarkdown(markdownText)
 
+  // TODO: Need to finish md rendering
   return (
     <section>
-      <ReactMarkdown>{cleanText}</ReactMarkdown>
+        <Markdown remarkPlugins={[remarkGfm]}>{markDownClean}</Markdown>
     </section>
   )
 }

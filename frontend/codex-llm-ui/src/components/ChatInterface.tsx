@@ -1,17 +1,14 @@
 import ResponseMessageComponent from './ResponseMessage';
 import RequestMessageComponent from './RequestMessage';
-import type { RequestResponse, ResponseMessage, RequestMessage } from '../types/types';
+import type { RequestResponse, RequestMessage } from '../types/types';
 import { useState, useEffect, useRef } from 'react';
-import ndjsonStream from "can-ndjson-stream";
+
 
 function ChatInterface() {
 
   const [messages, setMessages] = useState<RequestResponse[]>([])
 
   const [requestText, setRequestText] = useState<string>('')
-
-  const [lockSendButton, setLockSendButton] = useState<boolean>(false)
-
 
   async function newMessage(message: RequestMessage) {
     setMessages(prev => {
@@ -78,7 +75,6 @@ function ChatInterface() {
                     }
                   }
 
-                  console.log("!!!")
                   thinkingTimer = setInterval(() => {
                     thinkingTime++
                   }, 1000)
@@ -115,10 +111,7 @@ function ChatInterface() {
                     }
                   }
                   break
-
-                
               }
-
               return updated
           })
         }
@@ -143,7 +136,6 @@ function ChatInterface() {
 
     await fetchNdjson(prompt)
 
-    console.log("Current messages at this moment:", messages)
   }
 
 
@@ -157,12 +149,14 @@ function ChatInterface() {
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
 
+  // FIXME: Autoscroll only when when the user is at the bottom of the page
   useEffect(() => {
     const container = chatContainerRef.current
     if (container) {
       container.scrollTop = container.scrollHeight
     }
   }, [messages])
+
 
   return (
     <div className="chat-container" ref={chatContainerRef}>
