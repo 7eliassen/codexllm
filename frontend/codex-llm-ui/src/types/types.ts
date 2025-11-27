@@ -1,6 +1,7 @@
 export interface ResponseMessage {
     thinkingText?: string
-    thinkingTime?: number
+    thinkingTimeDelta?: number
+    thinkingTimeStart?: number
     responseText: string
     errorStatus: boolean
 }

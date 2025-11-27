@@ -42,9 +42,6 @@ function ChatInterface() {
 
       const decoder = new TextDecoder()
 
-      let thinkingTimer: ReturnType<typeof setTimeout>
-      let thinkingTime = 0
-
       while (true) {
         if (reader !== null) {
           const { done, value } = await reader.read()
@@ -82,14 +79,10 @@ function ChatInterface() {
                     ...last,
                     response: {
                       ...last.response,
-                      thinkingText: ""
+                      thinkingText: "",
+                      thinkingTimeStart: Date.now()
                     }
                   }
-
-                  thinkingTimer = setInterval(() => {
-                    thinkingTime++
-                  }, 1000)
-
                   break
                 
                 case "reasoning-delta":
@@ -103,12 +96,12 @@ function ChatInterface() {
                   break
 
                 case "reasoning-end":
-                  clearInterval(thinkingTimer)
                   updated[lastIndex] = {
                     ...last,
                     response: {
                       ...last.response,
-                      thinkingTime: thinkingTime
+                      thinkingTimeDelta: last.response.thinkingTimeStart && 
+                                          Math.floor((Date.now() - last.response.thinkingTimeStart) / 1000)
                     }
                   }
                   break
@@ -199,7 +192,8 @@ function ChatInterface() {
             <ResponseMessageComponent 
               responseText={message.response.responseText} 
               thinkingText={message.response.thinkingText}
-              thinkingTime={message.response.thinkingTime}
+              thinkingTimeDelta={message.response.thinkingTimeDelta}
+              thinkingTimeStart={message.response.thinkingTimeStart}
               errorStatus={message.response.errorStatus}
             />
           )}

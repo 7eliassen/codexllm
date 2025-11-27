@@ -24,14 +24,14 @@ function ResponseMessageComponent(props: ResponseMessage ) {
             <div className={"thought-block"}>
             <div 
 
-                className={`thought-header ${props.thinkingTime !== undefined? "no-animation": ""}`} 
+                className={`thought-header ${props.thinkingTimeStart !== undefined? "no-animation": ""}`} 
                 onClick={() => setIsThoughtOpen(!isThoughtOpen)}>
 
                 <img src="brain.svg" alt="attach file" />
 
                 {/* I don't sure if it good verification*/}
-                {props.thinkingTime !== undefined? 
-                <span>{`Thought for ${props.thinkingTime} seconds`}</span>
+                {props.thinkingTimeDelta !== undefined? 
+                <span>{`Thought for ${props.thinkingTimeDelta} seconds`}</span>
                 : <span>{"Thinking..."}</span>}
                 
 
