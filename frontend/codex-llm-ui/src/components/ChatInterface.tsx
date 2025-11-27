@@ -2,7 +2,7 @@ import ResponseMessageComponent from './ResponseMessage';
 import RequestMessageComponent from './RequestMessage';
 import type { RequestResponse, RequestMessage } from '../types/types';
 import { useState, useEffect, useRef } from 'react';
-
+import get_stream from "../requests/get_stream"
 
 function ChatInterface() {
 
@@ -26,22 +26,13 @@ function ChatInterface() {
 
   async function fetchNdjson(prompt: string) {
     setIsButSendLock(true)
-
-    const url = "http://localhost:8000/stream/"
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/x-ndjson'
-        },
-        body: JSON.stringify({ "prompt": prompt }),
-      })
-
+    
+      const response = await get_stream(prompt)
       const reader = response.body?.getReader() ?? null;
 
-      const decoder = new TextDecoder()
 
+      const decoder = new TextDecoder()
       while (true) {
         if (reader !== null) {
           const { done, value } = await reader.read()
