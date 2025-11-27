@@ -17,6 +17,7 @@ function ChatInterface() {
         request: message,
         response: {
           responseText: "",
+          errorStatus: false,
         }
       }
       return [...prev, newMsg]
@@ -25,6 +26,7 @@ function ChatInterface() {
 
   async function fetchNdjson(prompt: string) {
     setIsButSendLock(true)
+
     const url = "http://localhost:8000/stream/"
     try {
       const response = await fetch(url, {
@@ -118,7 +120,23 @@ function ChatInterface() {
       }
 
     } catch (e) {
-      
+      console.log("!!!")
+      setMessages(prev => {
+              const updated = [...prev]
+              const lastIndex = updated.length - 1
+              const last = updated[lastIndex]
+
+              if (!last) return prev
+
+              updated[lastIndex] = {
+                ...last,
+                response: {
+                  ...last.response,
+                  errorStatus: true
+                }
+              }
+              return updated
+      })
     } finally {
       setIsButSendLock(false)
     }
@@ -172,6 +190,7 @@ function ChatInterface() {
               responseText={message.response.responseText} 
               thinkingText={message.response.thinkingText}
               thinkingTime={message.response.thinkingTime}
+              errorStatus={message.response.errorStatus}
             />
           )}
         </div>

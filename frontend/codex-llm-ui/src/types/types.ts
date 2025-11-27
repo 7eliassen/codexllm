@@ -2,6 +2,7 @@ export interface ResponseMessage {
     thinkingText?: string
     thinkingTime?: number
     responseText: string
+    errorStatus: boolean
 }
 
 export interface RequestMessage {

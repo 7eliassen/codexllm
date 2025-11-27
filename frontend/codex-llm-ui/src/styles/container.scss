@@ -120,6 +120,10 @@
   font-size: 14px;
   line-height: 22px;
 
+  &.error-msg {
+    color: $code-red-color;
+  }
+
   h3 {
     font-size: 16px;
     font-weight: 600;

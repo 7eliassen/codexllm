@@ -5,6 +5,17 @@ import MarkdownComponent from "./MarkdownComponent"
 function ResponseMessageComponent(props: ResponseMessage ) {
     const [isThoughtOpen, setIsThoughtOpen] = useState(false);
 
+    if (props.errorStatus) {
+        return (
+            <div className="ai-message-wrapper">
+                <div className="response-content error-msg">
+                    Error
+                </div>
+            </div>
+        )
+    }
+
+
     return (
     <div className="ai-message-wrapper">
           
