@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 function ChatInterface() {
 
   const [messages, setMessages] = useState<RequestResponse[]>([])
-
+  const [isButSendLock, setIsButSendLock] = useState<boolean>(false)
   const [requestText, setRequestText] = useState<string>('')
 
   async function newMessage(message: RequestMessage) {
@@ -19,13 +19,12 @@ function ChatInterface() {
           responseText: "",
         }
       }
-
       return [...prev, newMsg]
     })
   }
 
-
   async function fetchNdjson(prompt: string) {
+    setIsButSendLock(true)
     const url = "http://localhost:8000/stream/"
     try {
       const response = await fetch(url, {
@@ -119,7 +118,9 @@ function ChatInterface() {
       }
 
     } catch (e) {
-      console.error(e)
+      
+    } finally {
+      setIsButSendLock(false)
     }
   }
 
@@ -142,7 +143,8 @@ function ChatInterface() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      handleSend()
+      if (!isButSendLock)
+        handleSend()
     }
   }
   
@@ -194,7 +196,7 @@ function ChatInterface() {
             </button>
             
             <button 
-              className="send-btn" 
+              className={`send-btn ${isButSendLock? "btn-disabled": ""}`}
               onClick={handleSend}>
               <img src="send.svg" alt="Send" />
               Send

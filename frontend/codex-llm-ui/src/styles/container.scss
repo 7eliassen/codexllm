@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: $text-white;
+  color: $white-color;
   padding: 20px;
   padding-bottom: 140px;
   box-sizing: border-box;
@@ -41,7 +41,7 @@
   max-width: 80%;
   font-size: 14px;
   line-height: 22px;
-  color: $text-white;
+  color: $white-color;
 }
 
 .ai-message-wrapper {
@@ -63,12 +63,12 @@
     cursor: pointer;
     user-select: none;
     font-size: 14px;
-    color: $text-gray; 
+    color: $gray-color; 
     
     background: linear-gradient(
       90deg,
-      $text-gray 95%,
-      $text-white 100%
+      $gray-color 95%,
+      $white-color 100%
     );
 
     background-size: 200% 100%;
@@ -166,7 +166,7 @@ pre {
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
-    color: $text-gray;
+    color: $gray-color;
 
     .lang {
       display: flex;
@@ -181,11 +181,11 @@ pre {
       cursor: pointer;
       background: transparent;
       border: none;
-      color: $text-gray;
+      color: $gray-color;
       font-family: $font-stack;
 
       &:hover {
-        color: $text-white;
+        color: $white-color;
       }
     }
   }
@@ -197,7 +197,7 @@ pre {
     font-family: $font-mono;
     font-size: 12px;
     line-height: 1.5;
-    color: $text-white;
+    color: $white-color;
     white-space: pre-wrap;
     overflow-x: auto;
     
@@ -206,7 +206,7 @@ pre {
     .arg { color: #79C0FF; }
     .str { color: #A5D6FF; }
     .comment { color: #8B949E; }
-    .error-text { color: $text-code-red; }
+    .error-text { color: $code-red-color; }
   }
 }
 
@@ -233,7 +233,7 @@ pre {
 
     .col-right {
       flex: 1;
-      color: $text-white;
+      color: $white-color;
     }
     
     .mono {
@@ -269,7 +269,7 @@ pre {
   textarea {
     background: transparent;
     border: none;
-    color: $text-white;
+    color: $white-color;
     font-family: $font-stack;
     font-size: 14px;
     resize: none;
@@ -277,7 +277,7 @@ pre {
     min-height: 22px;
 
     &::placeholder {
-      color: $text-gray;
+      color: $gray-color;
     }
   }
 
@@ -300,18 +300,23 @@ pre {
     .attach-btn {
       border: 1px solid $border-color;
       background: transparent;
-      color: $text-gray;
+      color: $gray-color;
       svg {
-        stroke: $text-gray;
+        stroke: $gray-color;
       }
     }
 
     .send-btn {
-      background: $text-white;
+      background: $white-color;
       border: none;
       color: $bg-black;
       font-weight: 500;
       height: 30px;
+
+      &.btn-disabled {
+        background-color: $gray-color;
+        pointer-events: none;
+      }
     }
   }
 }
