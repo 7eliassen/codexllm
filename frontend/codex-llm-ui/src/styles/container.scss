@@ -261,9 +261,8 @@ pre {
   display: flex;
   justify-content: center;
   padding: 50px 20px 20px 20px;
-  height: 100px;
   z-index: 10;
-  
+ 
   &.show-gradient {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 25%);
   }
@@ -293,7 +292,10 @@ pre {
     font-size: 14px;
     resize: none;
     outline: none;
-    min-height: 22px;
+    min-height: 40px;
+    resize: none;
+    overflow-y: auto;
+    max-height: 300px;
 
     &::placeholder {
       color: $gray-color;

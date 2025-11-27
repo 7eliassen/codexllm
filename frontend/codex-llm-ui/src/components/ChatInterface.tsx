@@ -172,14 +172,6 @@ function ChatInterface() {
 
   const chatContainerRef = useRef<HTMLDivElement>(null)
 
-  // FIXME: Autoscroll only when when the user is at the bottom of the page
-  useEffect(() => {
-    const container = chatContainerRef.current
-    if (container) {
-      container.scrollTop = container.scrollHeight
-    }
-  }, [messages])
-
 
   return (
     <div className="chat-container" ref={chatContainerRef}>
@@ -211,7 +203,12 @@ function ChatInterface() {
             rows={1}
             value={requestText} 
             onChange={(e) => setRequestText(e.target.value)}
-            onKeyDown={handleKeyDown} 
+            onKeyDown={handleKeyDown}
+            onInput={(e: React.FormEvent<HTMLTextAreaElement>) => {
+              const target = e.currentTarget;
+              target.style.height = 'auto';
+              target.style.height = target.scrollHeight + 'px';
+            }}
           ></textarea>
 
           <div className="input-footer">
