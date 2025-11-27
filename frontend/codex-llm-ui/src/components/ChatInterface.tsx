@@ -197,8 +197,10 @@ function ChatInterface() {
       ))}
       </div>
 
+      <div className="indent-before-gradient"></div>
+
       {/* Input Area  */}
-      <div className="input-wrapper">
+      <div className="input-wrapper show-gradient">
         <div className="input-box">
           <textarea
             placeholder="Ask anything"

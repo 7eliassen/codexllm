@@ -101,6 +101,7 @@
     color: #777777;
     border-left: 1px solid $border-color;
     margin-left: 7px;
+    white-space: pre-line;
   }
 }
 
@@ -246,6 +247,13 @@ pre {
   }
 }
 
+.indent-before-gradient {
+  min-height: 50px;
+  height: 50px;
+  width: 100%;
+  
+}
+
 .input-wrapper {
   position: fixed;
   bottom: 0;
@@ -253,9 +261,15 @@ pre {
   display: flex;
   justify-content: center;
   padding: 50px 20px 20px 20px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 25%);
   height: 100px;
   z-index: 10;
+  
+  &.show-gradient {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 25%);
+  }
+
+  pointer-events: none;
+
 }
 
 .input-box {
@@ -269,6 +283,7 @@ pre {
   flex-direction: column;
   gap: 10px;
   margin: 0 10px;
+  pointer-events: auto;
 
   textarea {
     background: transparent;
