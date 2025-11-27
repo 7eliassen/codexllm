@@ -16,7 +16,7 @@ function ChatInterface() {
         id: prev.length + 1,
         request: message,
         response: {
-          responseText: "",
+          responseText: "Wait...",
           errorStatus: false,
         }
       }
@@ -66,6 +66,16 @@ function ChatInterface() {
               if (!last) return prev
 
               switch (message.type) {
+
+                case "start":
+                  updated[lastIndex] = {
+                    ...last,
+                    response: {
+                      ...last.response,
+                      responseText: ""
+                    }
+                  }
+                  break
 
                 case "reasoning-start":
                   updated[lastIndex] = {
