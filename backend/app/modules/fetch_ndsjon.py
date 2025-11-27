@@ -1,5 +1,5 @@
 import httpx
-from configs.api_config import url, headers, TIMEOUT, pre_prompt
+from configs.api_config import url, headers, TIMEOUT
 from typing import AsyncGenerator
 import httpx
 
@@ -22,7 +22,7 @@ async def stream(
 
 async def response_generator(prompt: str):
     body = {
-        "prompt" : f"Requirements: {pre_prompt}. Prompt: {prompt}"
+        "prompt" : prompt
     }
     async for response in stream(body, headers, url):
         yield response
