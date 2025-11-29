@@ -169,7 +169,7 @@ function ChatInterface() {
       <div className="chat-column">
         {/* Here requests and responses */}
         {messages.map((message, index) => (
-        <div key={message.id || index}>
+        <div className="message-wrapper" key={message.id || index}>
           <RequestMessageComponent requestText={message.request.requestText} />
           {message.response && (
             <ResponseMessageComponent 
