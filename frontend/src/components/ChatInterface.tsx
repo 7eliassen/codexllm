@@ -6,6 +6,8 @@ import get_stream from "../requests/get_stream"
 
 function ChatInterface() {
 
+  const apiUrl = "http://localhost:8000"
+
   const [messages, setMessages] = useState<RequestResponse[]>([])
   const [isButSendLock, setIsButSendLock] = useState<boolean>(false)
   const [requestText, setRequestText] = useState<string>('')
@@ -28,7 +30,7 @@ function ChatInterface() {
     setIsButSendLock(true)
     try {
     
-      const response = await get_stream(prompt)
+      const response = await get_stream(prompt, `${apiUrl}/stream`);
       const reader = response.body?.getReader() ?? null;
 
 

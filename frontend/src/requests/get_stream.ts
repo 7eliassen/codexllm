@@ -1,5 +1,6 @@
-async function get_stream(prompt: string) {
-    const url = "http://localhost:8000/stream"
+
+
+async function get_stream(prompt: string, url: string) {
 
     const response = await fetch(url, {
     method: 'POST',
