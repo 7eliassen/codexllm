@@ -114,7 +114,6 @@ function ChatInterface() {
       }
 
     } catch (e) {
-      console.log("!!!")
       setMessages(prev => {
               const updated = [...prev]
               const lastIndex = updated.length - 1
