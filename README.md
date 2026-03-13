@@ -6,6 +6,11 @@ Tech stack:
 - Typescript + React
 - FastApi
 
+## Demonstration of work
+
+![Demo](https://raw.githubusercontent.com/7eliassen/codexllm/refs/heads/master/demo.gif)
+
+
 ## How to run
 
 ### frontend
